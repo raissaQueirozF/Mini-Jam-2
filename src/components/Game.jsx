@@ -2,39 +2,39 @@ import React, { useEffect, useState } from 'react';
 
 const labirintos = [
   [
-    ['W','W','W','W','W','W','W','W','W','W'],
-    ['W',' ',' ',' ',' ','W',' ',' ',' ','W'],
+    ['W','W','W','W',' ',' ',' ',' ',' ','W'],
+    ['W',' ',' ',' ',' ','W',' ','W',' ','W'],
     ['W',' ','W','W',' ','W',' ','W',' ','W'],
     ['W',' ','W',' ',' ',' ',' ','W',' ','W'],
     ['W',' ','W',' ','W','W',' ','W',' ','W'],
-    ['W',' ','W',' ',' ',' ',' ','W',' ','W'],
+    ['W',' ','W',' ',' ',' ',' ',' ',' ','W'],
     ['W',' ','W','W','W','W',' ','W',' ','W'],
-    ['W',' ',' ',' ',' ',' ',' ',' ',' ','W'],
-    ['W','W','W','W','W','W','W','W',' ','W'],
+    ['W',' ',' ',' ',' ',' ',' ','W',' ','W'],
+    ['W','W',' ','W','W','W',' ','W',' ','W'],
     ['W','W','W','W','W','W','W','W','W','W'],
   ],
   [
     ['W','W','W','W','W','W','W','W','W','W'],
     ['W',' ',' ',' ','W',' ',' ',' ',' ','W'],
     ['W',' ','W',' ','W',' ','W','W',' ','W'],
-    ['W',' ','W',' ',' ',' ','W',' ',' ','W'],
-    ['W',' ','W','W','W',' ','W',' ','W','W'],
-    ['W',' ',' ',' ','W',' ','W',' ',' ','W'],
-    ['W','W','W',' ','W',' ','W','W',' ','W'],
-    ['W',' ',' ',' ',' ',' ',' ','W',' ','W'],
-    ['W',' ','W','W','W','W',' ',' ',' ','W'],
+    ['W',' ','W',' ',' ',' ','W',' ',' ',' '],
+    ['W','W','W','W','W',' ',' ',' ','W',' '],
+    ['W',' ',' ',' ','W',' ','W',' ',' ',' '],
+    ['W',' ','W',' ','W',' ','W','W',' ','W'],
+    ['W',' ','W',' ',' ',' ',' ','W',' ','W'],
+    ['W',' ','W',' ','W','W',' ',' ',' ','W'],
     ['W','W','W','W','W','W','W','W','W','W'],
   ],
   [
     ['W','W','W','W','W','W','W','W','W','W'],
     ['W',' ',' ',' ',' ',' ',' ',' ',' ','W'],
-    ['W',' ','W','W','W','W','W','W',' ','W'],
+    ['W',' ','W','W','W',' ','W','W',' ','W'],
     ['W',' ','W',' ',' ',' ',' ','W',' ','W'],
-    ['W',' ','W',' ','W','W',' ','W',' ','W'],
-    ['W',' ','W',' ',' ',' ',' ','W',' ','W'],
-    ['W',' ','W','W','W','W',' ','W',' ','W'],
-    ['W',' ',' ',' ',' ','W',' ',' ',' ','W'],
-    ['W','W','W','W',' ','W','W','W','W','W'],
+    ['W',' ','W',' ','W','W',' ','W','W','W'],
+    ['W',' ','W',' ',' ',' ',' ',' ',' ','W'],
+    ['W',' ','W',' ','W','W','W','W',' ','W'],
+    ['W',' ','W',' ','W',' ',' ',' ',' ','W'],
+    ['W',' ',' ',' ',' ',' ','W','W','W','W'],
     ['W','W','W','W','W','W','W','W','W','W'],
   ]
 ];
@@ -47,7 +47,7 @@ function Game() {
   const [angulo, setAngulo] = useState(0);
   const [pontos, setPontos] = useState(0);
   const [tempo, setTempo] = useState(60);
-  const [vidas, setVidas] = useState(5);
+  const [vidas, setVidas] = useState(3);
   const [fimDeJogo, setFimDeJogo] = useState(false);
 
   const centro = { x: 5, y: 5 };
@@ -138,7 +138,7 @@ function Game() {
 
       setGato({ x: novoX, y: novoY });
 
-      // Verificar colisão com o rato
+      // Verificar colisão do rato com o gato
       if (novoX === rato.x && novoY === rato.y) {
         setVidas((v) => {
           const novaVida = v - 1;
@@ -170,32 +170,40 @@ function Game() {
 
   if (fimDeJogo) {
     return (
-      <div className="text-center text-white">
-        <h2 className="text-3xl font-bold">🎮 Fim de Jogo</h2>
-        <p className="text-xl mt-2">🏆 Pontuação final: {pontos}</p>
+      <div className="flex justify-center items-center h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-2xl shadow-lg text-center max-w-md w-full border-4 border-purple-500">
+        <h2 className="text-4xl font-extrabold text-purple-700 mb-4">🎮 Fim de Jogo</h2>
+        <p className="text-2xl text-gray-800 mb-6">🏆 Pontuação final: <span className="font-bold">{pontos}</span></p>
+        <button
+          className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-xl shadow-md transition duration-300 ease-in-out"
+          onClick={() => window.location.reload()} // reinicia o jogo
+        >
+          Tentar de novo?
+        </button>
       </div>
+    </div>
     );
   }
 
   return (
     <div className="flex flex-col items-center">
-      <div className="text-white mb-2">
+      <div className="text-lg font-semibold text-white bg-purple-800 px-4 py-2 rounded-full mb-4 shadow">
         ⏰ Tempo: {tempo}s | 🧀 Pontos: {pontos} | ❤️ Vidas: {vidas}
       </div>
-      <div className="grid grid-cols-10 gap-1 bg-gray-800 p-2 rounded-md">
+  
+      <div className="grid grid-cols-10 gap-1 bg-gray-800 p-3 rounded-md shadow-md">
         {labirintoAtual.map((linha, y) =>
           linha.map((celula, x) => {
             const isRato = rato.x === x && rato.y === y;
             const isGato = gato.x === x && gato.y === y;
-            const isQueijo =
-              Math.floor(queijoX) === x && Math.floor(queijoY) === y;
-
+            const isQueijo = Math.floor(queijoX) === x && Math.floor(queijoY) === y;
+  
             return (
               <div
                 key={`${x}-${y}`}
-                className={`w-6 h-6 flex items-center justify-center text-sm ${
-                  celula === 'W' ? 'bg-gray-900' : 'bg-white'
-                }`}
+                className={`w-10 h-10 flex items-center justify-center text-xl font-bold ${
+                  celula === 'W' ? 'bg-gray-900' : 'bg-white text-black'
+                } rounded`}
               >
                 {isRato ? '🐭' : isGato ? '🐱' : isQueijo ? '🧀' : ''}
               </div>
@@ -205,6 +213,7 @@ function Game() {
       </div>
     </div>
   );
+  
 }
 
 export default Game;
