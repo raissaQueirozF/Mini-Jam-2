@@ -4,10 +4,9 @@ import Game from './components/Game';
 function App() {
   const instructions = [
     "Use as setas do teclado (↑ ↓ ← →) para mover o rato.",
-    "Pegue o queijo 🧀 que gira no centro do mapa! Mas cuidado: o movimento do queijo pode te enganar",
+    "Pegue o queijo 🧀 que gira no centro do mapa! Mas cuidado: o movimento do queijo pode te enganar...",
     "Evite o gato 🐱 — ele está atrás de você!",
-    "Você tem 3 vidas e 60 segundos.",
-    "Boa sorte!"
+    "Você tem 3 vidas e 60 segundos. Boa sorte!",
   ];
 
   const [step, setStep] = useState(0);
