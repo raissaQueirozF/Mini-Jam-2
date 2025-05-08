@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import somMusica from './assets/musica.mp3';
 import Game from './components/Game';
 
 function App() {
   const instructions = [
     "Use as setas do teclado (↑ ↓ ← →) para mover o rato.",
-    "Pegue o queijo 🧀 que gira no centro do mapa! Mas cuidado: o movimento do queijo pode te enganar...",
+    "Pegue o queijo 🧀 que gira no centro do mapa! Mas cuidado: o movimento do queijo pode te enganar",
     "Evite o gato 🐱 — ele está atrás de você!",
-    "Você tem 3 vidas e 60 segundos. Boa sorte!",
+    "Você tem 3 vidas e 60 segundos.",
+    "Boa sorte!"
   ];
 
   const [step, setStep] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     if (step < instructions.length) {
@@ -23,10 +26,26 @@ function App() {
 
   const handleStartGame = () => {
     setGameStarted(true);
+
+    // Tocar música
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+
+    // Parar música após 60 segundos
+    setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    }, 60000); // 60 segundos
   };
 
   return (
     <div className="relative min-h-screen bg-gradient-to-b from-purple-100 to-purple-300 overflow-hidden">
+      {/* Música de fundo */}
+      <audio ref={audioRef} src={somMusica} loop />
+
       {/* Animação background */}
       <div className="absolute inset-0 pointer-events-none z-0 animate-background-flow text-5xl opacity-20">
         {Array.from({ length: 30 }).map((_, i) => (
