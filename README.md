@@ -26,7 +26,7 @@ MP3 Audio (Trilha sonora de fundo)
 React Hooks (useState, useEffect, useRef)
 ###
 <h2>▶️ Instruções para Executar Localmente</h2>
-<p>Clone o repositório:</p>
+<h3>Clone o repositório:</h3>
 
 git clone https://github.com/seu-usuario/ratozi-game.git
 cd ratozi-game
@@ -36,22 +36,6 @@ npm install
 Inicie o servidor de desenvolvimento:
 
 npm run dev
-<p> Acesse o jogo em:</p>
+<h3> Acesse o jogo em:</h3>
 http://localhost:5173
-###
-📁 Estrutura do Projeto
 
-MINI-JAM-2/
-├── node_modules/
-├── src/
-│   ├── assets/         # Música
-│   ├── components/
-│   │   ├── Game.jsx    # Lógica e renderização do jogo
-│   │
-│   ├── App.jsx         # Intro animada + controle de estados
-│   ├── index.css       # Estilo dos botões, etc
-│   └── main.jsx
-├── package.json
-├── tailwind.config.js
-├── vite.config.js
-└── README.md
