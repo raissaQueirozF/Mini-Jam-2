@@ -1,4 +1,4 @@
-🧀 Caça ao Queijo - RatoZi Game
+🧀 Caça ao Queijo
 Um jogo casual feito com React e P5.js, onde você controla um rato em busca de queijo enquanto foge de um gato faminto! Com trilha sonora animada, animação de introdução e uma experiência divertida de 60 segundos. Ideal para iniciantes e nostálgicos de joguinhos simples.
 
 🎮 Como Jogar
